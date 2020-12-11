@@ -66,13 +66,13 @@ class YMTHomePageViewModel: NSObject {
     /// 服务器返回数据格式和页面UI搭建不匹配需要进行单独处理
     /// 加载本地数据，之后进行合并
     func loadCacheData(){
-        
+    
         ///初始本地数据 给 imageUrl 默认值 防止轮播图警告
         let result1 = ["title": "第一组数据初始化" ,"array1":["imageUrl":["https://"]],"array2": [
             ["title":"新产品","imageName":"menu_new","imageUrl":[]],]] as [String : Any]
         let result2 = ["title": "第二条" ,"array1":[],"array2": [
             ["title":"无感刷新","imageName":"menu_new"],
-            ["title":"ドキュメントdowload","imageName":"menu_hot"],
+            ["title":"ダウンロード","imageName":"menu_hot"],
             ["title":"骨架屏","imageName":"menu_supermarket"],
             ["title":"海鲜","imageName":"menu_seafood"],
             ["title":"活动","imageName":"menu_activity"],
@@ -86,6 +86,17 @@ class YMTHomePageViewModel: NSObject {
         let group1 : HomePage  = HomePage(JSON: result1)!
         let group2 : HomePage  = HomePage(JSON: result2)!
         let group3 : HomePage  = HomePage(JSON: result3)!
+        
+        /// 查看是否有缓存数据
+//        let  urlImages =  CoreDataManager.shared.getHomePageImages()
+//                 if urlImages.count > 0{
+//                    group1.array1![0].imageUrl = urlImages
+//         }
+          
+//        let homeData = CoreDataManager.shared.getHomePageData()
+//                 if homeData.count > 0{
+//          }
+        
         models.accept([group1,group2,group3])
     }
     
@@ -104,7 +115,6 @@ class YMTHomePageViewModel: NSObject {
         let out  = Output(sections: models.asDriver(onErrorJustReturn: []))
         
         out.navigationCommand.subscribe(onNext: {[weak self] index in
-                        
                         if index.row == 0 && index.section == 1 {
                             let vc = YMTTaobaoList()
                            input.navigationVC.pushViewController(vc, animated: true)
@@ -120,17 +130,20 @@ class YMTHomePageViewModel: NSObject {
                         }
             }).disposed(by: self.disposeBag)
         
-        
         out.requstCommand.subscribe(onNext: { [unowned self] isReloadData in
             self.index = isReloadData ? 1 : self.index + 1
             HomePageProvider.rx.request(.homePageData( self.index))
                 .mapObject(HomePage.self)
                 .map{  group in
+                    ///数据调整并进行缓存存储
                     var imagUrl : Array<String> = []
                     for i in 0..<group.array1!.count{
                         let url = group.array1?[i]
                         imagUrl.append((url?.url_big)!)
                     }
+                  //  CoreDataManager.shared.deleteHomePageImages
+                  //  CoreDataManager.shared.saverHomePageImages(urls: imagUrl)
+
                     var  s = self.models.value
                     s[0].array2![0].imageUrl = imagUrl
                     s[2].array2 = s[2].array2! + group.array2!

@@ -26,6 +26,7 @@ class YMTHomePageController: YMTBaseViewController {
     ///在当前页面创建 downLaodViewModel
     ///延长downLaodViewModel生命周期
     private var downLoadViewModel =  DownloadViewModel()
+    
     /// downLoad 控制器 数据序列
     private  lazy var downloadDatas = { ()  -> Driver<[DownLoadSection]> in
         var datas = downLoadViewModel.fetchData()
@@ -34,14 +35,13 @@ class YMTHomePageController: YMTBaseViewController {
     
     private let viewModel = YMTHomePageViewModel()
     
-    ///RXDataSource 用法
+    ///使用RXDataSource 
     ///用于与TableView或者CollectionView进行绑定
     let dataSource = RxCollectionViewSectionedReloadDataSource<HomePage>(
         configureCell:  { (dataSource, collectionView, indexPath, element) -> UICollectionViewCell in
             switch indexPath.section {
             case 0:
                 let cell : YMTautoScrollViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "YMTautoScrollViewCell", for: indexPath) as! YMTautoScrollViewCell
-                
                 cell.autoScrollView.images = element.imageUrl
                 return cell
             case 1 :
@@ -106,11 +106,13 @@ extension YMTHomePageController {
                 Output.requstCommand.onNext(false)
             }
         }).disposed(by: disposeBag)
+        
         /// 下拉刷新
         collectionView.es.addPullToRefresh {[unowned self] in
             Output.requstCommand.onNext(true)
             self.collectionView.es.stopPullToRefresh()
         }
+        
         /// 下拉加载
         collectionView.es.addInfiniteScrolling { [unowned self] in
             Output.requstCommand.onNext(false)

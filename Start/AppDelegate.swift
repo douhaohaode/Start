@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      }
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = Bundle.main.url(forResource: "YamotoData", withExtension: "momd")
+        let modelURL = Bundle.main.url(forResource: "StartData", withExtension: "momd")
         let managedObjectModel = NSManagedObjectModel.init(contentsOf: modelURL!)
         return managedObjectModel!
     }()

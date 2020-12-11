@@ -22,9 +22,20 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="favorites" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favorites" inverseName="favoritesResult" inverseEntity="Favorites"/>
     </entity>
+    <entity name="HomePageImageUrl" representedClassName="HomePageImageUrl" syncable="YES" codeGenerationType="class">
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="HomePageListData" representedClassName="HomePageListData" syncable="YES" codeGenerationType="class">
+        <attribute name="good_info" optional="YES" attributeType="String"/>
+        <attribute name="good_name" optional="YES" attributeType="String"/>
+        <attribute name="good_price" optional="YES" attributeType="String"/>
+        <attribute name="good_url_big" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="AppInfo" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Favorites" positionX="-54" positionY="36" width="128" height="118"/>
+        <element name="Favorites" positionX="-45" positionY="27" width="128" height="118"/>
         <element name="FavoritesResult" positionX="-63" positionY="18" width="128" height="133"/>
+        <element name="HomePageImageUrl" positionX="-54" positionY="54" width="128" height="58"/>
+        <element name="HomePageListData" positionX="-36" positionY="72" width="128" height="103"/>
     </elements>
 </model>

@@ -513,10 +513,10 @@
 		EC8F9123258319AC0031D83C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EC8F913E258319AC0031D83C /* Main */,
 				EC8F9124258319AC0031D83C /* Home */,
 				EC8F912E258319AC0031D83C /* SkeletonView */,
 				EC8F9135258319AC0031D83C /* DowLaod */,
-				EC8F913E258319AC0031D83C /* Main */,
 				EC8F9141258319AC0031D83C /* Prerefresh */,
 			);
 			path = Modules;

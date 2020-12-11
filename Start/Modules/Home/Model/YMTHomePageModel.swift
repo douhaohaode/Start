@@ -24,7 +24,6 @@ struct YMTHomePage: Mappable{
         result <- map["result"]
         array1 <- map["array1"]
         array2 <- map["array2"]
-        
     }
 }
 
