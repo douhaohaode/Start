@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AppInfo" representedClassName="AppInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="account" optional="YES" attributeType="String"/>
+        <attribute name="currentVersion" optional="YES" attributeType="String"/>
+        <attribute name="enterbackgroundTime" optional="YES" attributeType="String"/>
+        <attribute name="lastVersion" optional="YES" attributeType="String"/>
+        <attribute name="token" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Favorites" representedClassName="Favorites" syncable="YES" codeGenerationType="class">
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="editDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="favoritesResult" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FavoritesResult" inverseName="favorites" inverseEntity="FavoritesResult"/>
+    </entity>
+    <entity name="FavoritesResult" representedClassName="FavoritesResult" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="result_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="favorites" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favorites" inverseName="favoritesResult" inverseEntity="Favorites"/>
+    </entity>
+    <elements>
+        <element name="AppInfo" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Favorites" positionX="-54" positionY="36" width="128" height="118"/>
+        <element name="FavoritesResult" positionX="-63" positionY="18" width="128" height="133"/>
+    </elements>
+</model>

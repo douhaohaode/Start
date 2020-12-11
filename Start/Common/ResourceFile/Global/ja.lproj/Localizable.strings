@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  Start
+
+  Created by pactera on 2020/10/22.
+  Copyright © 2020 pactera. All rights reserved.
+*/
+ListName = "リスト";
+Personal = "個人";
+HomePage = "ホームページ";
+Order = "注文";
+Freight = "貨物";
+Back = "戻る";
+SearchPlaceholder = "全局搜索";
+DocumentDownload = "文件ダウンロード";
+Start = "開始";
+Stop = "暂枝";
+Unsolvedcase = "继续";
+Cohesion = "結";

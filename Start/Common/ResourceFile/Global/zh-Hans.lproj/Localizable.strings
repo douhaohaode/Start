@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  Start
+
+  Created by pactera on 2020/10/22.
+  Copyright © 2020 pactera. All rights reserved.
+*/
+ListName = "列表";
+Personal = "个人中心";
+HomePage = "主页";
+Order = "订单";
+Freight = "货运";
+Back = "返回";
+SearchPlaceholder = "全局搜索";
+DocumentDownload = "文件下载";
+Start = "开始";
+Stop = "结束";
+UnsolvedCase = "继续";
+Cohesion = "结束";
