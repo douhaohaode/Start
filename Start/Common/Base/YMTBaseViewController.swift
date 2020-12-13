@@ -25,18 +25,19 @@ class YMTBaseViewController: YMTOSViewController {
     
     public lazy var rightNavBarButton : YMTNavBarButton = YMTNavBarButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
     
+    public lazy var searchBar :UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH - 160, height: 30))
+    
     public lazy   var custmoSearchBarView   = {() -> UIView  in
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH - 160, height: 30))
-        let bar = UISearchBar(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH - 160, height: 30))
-        bar.placeholder = NSLocalizedString("SearchPlaceholder", comment: "")
+        searchBar.placeholder = NSLocalizedString("SearchPlaceholder", comment: "")
         if #available(iOS 13.0, *) {
-               bar.searchTextField.backgroundColor = SerachColor
+            searchBar.searchTextField.backgroundColor = SerachColor
         }else{
-            let testfield :UITextField = bar.value(forKey: "searchField") as! UITextField
+            let testfield :UITextField = searchBar.value(forKey: "searchField") as! UITextField
             testfield.backgroundColor = SerachColor
         }
-        view.addSubview(bar)
+        view.addSubview(searchBar)
         return view
     }()
     
@@ -57,6 +58,11 @@ class YMTBaseViewController: YMTOSViewController {
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
+    }
+    
+    func textFieldShouldReturn(textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 

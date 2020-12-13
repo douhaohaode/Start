@@ -79,7 +79,6 @@ extension YMTHomePageController {
             make.top.right.bottom.left.equalToSuperview().offset(0)
         }
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
-        
     }
     
     fileprivate func bindUI() {
@@ -92,11 +91,15 @@ extension YMTHomePageController {
         let Output  = viewModel.loadHomePageListLocalDate(input: Input)
         Output.sections.drive(collectionView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
+        /// 监听键盘消失
+        collectionView.rx.didScroll.subscribe(onNext :{[weak self] index in
+            self!.searchBar.resignFirstResponder()
+        }).disposed(by: disposeBag)
+        
         /// 导航栏跳转
-        collectionView.rx.itemSelected.subscribe(onNext:{ index in
-            
+        collectionView.rx.itemSelected.subscribe(onNext:{[weak self] index in
+            self!.searchBar.resignFirstResponder()
             Output.navigationCommand.onNext(index)
-            
         }).disposed(by:disposeBag)
         
         /// 无感刷新
