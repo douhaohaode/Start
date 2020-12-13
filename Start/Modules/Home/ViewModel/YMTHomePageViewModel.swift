@@ -68,8 +68,12 @@ class YMTHomePageViewModel: NSObject {
     func loadCacheData(){
     
         ///初始本地数据 给 imageUrl 默认值 防止轮播图警告
-        let result1 = ["title": "第一组数据初始化" ,"array1":["imageUrl":["https://"]],"array2": [
-            ["title":"新产品","imageName":"menu_new","imageUrl":[]],]] as [String : Any]
+        let result1 = ["title": "第一组数据初始化" ,
+                       "array1": [
+                       ["title":"无","imageName":"menu_new","imageUrl":[]],]
+                       ,"array2": [
+                        ["title":"新产品","imageName":"menu_new","imageUrl":[]],]] as [String : Any]
+        
         let result2 = ["title": "第二条" ,"array1":[],"array2": [
             ["title":"无感刷新","imageName":"menu_new"],
             ["title":"ダウンロード","imageName":"menu_hot"],
@@ -83,20 +87,15 @@ class YMTHomePageViewModel: NSObject {
             ["title":"分类","imageName":"menu_more"],]] as [String : Any]
         let result3 = ["title": "第三组数据初始化" ,"array1":[],"array2": []] as [String : Any]
         
-        let group1 : HomePage  = HomePage(JSON: result1)!
+        var group1 : HomePage  = HomePage(JSON: result1)!
         let group2 : HomePage  = HomePage(JSON: result2)!
         let group3 : HomePage  = HomePage(JSON: result3)!
         
-        /// 查看是否有缓存数据
-//        let  urlImages =  CoreDataManager.shared.getHomePageImages()
-//                 if urlImages.count > 0{
-//                    group1.array1![0].imageUrl = urlImages
-//         }
-          
-//        let homeData = CoreDataManager.shared.getHomePageData()
-//                 if homeData.count > 0{
-//          }
-        
+        /// 查看是否有轮播图本地缓存数据
+        let  urlImages =  CoreDataManager.shared.getHomePageImages()
+             if urlImages.count > 0{
+                    group1.array2![0].imageUrl = urlImages
+         }
         models.accept([group1,group2,group3])
     }
     
@@ -141,8 +140,8 @@ class YMTHomePageViewModel: NSObject {
                         let url = group.array1?[i]
                         imagUrl.append((url?.url_big)!)
                     }
-                  //  CoreDataManager.shared.deleteHomePageImages
-                  //  CoreDataManager.shared.saverHomePageImages(urls: imagUrl)
+                    CoreDataManager.shared.deleteHomePageImages()
+                    CoreDataManager.shared.saverHomePageImages(urls: imagUrl)
 
                     var  s = self.models.value
                     s[0].array2![0].imageUrl = imagUrl

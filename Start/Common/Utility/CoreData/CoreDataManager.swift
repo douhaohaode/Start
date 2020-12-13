@@ -40,19 +40,17 @@ class CoreDataManager: NSObject {
     }
     /// 添加首页 images缓存
     func saverHomePageImages(urls : [String]){
-        
-        for imageUrl in urls {
-        let Info = NSEntityDescription.insertNewObject(forEntityName: "HomePageImageUrl", into: context) as! HomePageImageUrl
-            Info.imageUrl = imageUrl
-        }
-        saveContext()
+        for  i in 0..<urls.count{
+            let Info = NSEntityDescription.insertNewObject(forEntityName: "HomePageImageUrl", into: context) as! HomePageImageUrl
+                Info.imageUrl = urls[i]
+                saveContext()
+            }
     }
-    
-    /// 删除所有数据
+
     /// 删除所有数据
        func deleteHomePageImages() {
         
-        let fetchRequest: NSFetchRequest = HomePageListData.fetchRequest()
+        let fetchRequest: NSFetchRequest = HomePageImageUrl.fetchRequest()
                do {
                    let result = try context.fetch(fetchRequest)
                    for Info in result {
