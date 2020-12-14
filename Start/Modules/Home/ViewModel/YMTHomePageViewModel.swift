@@ -32,7 +32,7 @@ class YMTHomePageViewModel: NSObject {
          return vc
      }()
     
-    //MARK - 输入源
+    //MARK - 输入
     
     struct Input {
         
@@ -49,7 +49,7 @@ class YMTHomePageViewModel: NSObject {
         var downloadDatas : Driver<[DownLoadSection]>
     }
     
-    //MARK - 输出源
+    //MARK - 输出
     
     struct Output {
         
@@ -69,10 +69,8 @@ class YMTHomePageViewModel: NSObject {
     
         ///初始本地数据 给 imageUrl 默认值 防止轮播图警告
         let result1 = ["title": "第一组数据初始化" ,
-                       "array1": [
-                       ["title":"无","imageName":"menu_new","imageUrl":[]],]
-                       ,"array2": [
-                        ["title":"新产品","imageName":"menu_new","imageUrl":[]],]] as [String : Any]
+                       "array1": [["title":"无","imageName":"menu_new","imageUrl":[]],],
+                       "array2": [["title":"新产品","imageName":"menu_new","imageUrl":[]],]] as [String : Any]
         
         let result2 = ["title": "第二条" ,"array1":[],"array2": [
             ["title":"无感刷新","imageName":"menu_new"],

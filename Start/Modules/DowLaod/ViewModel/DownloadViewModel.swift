@@ -69,46 +69,26 @@ class DownloadViewModel:NSObject,downloadViewModelType,downloadViewModelInputs,d
         
         let items =  models.value.first?.items
         let  model = items![index.row]
-        requests?.list![index.row].state  =    .pause
+        requests?.list![index.row].state  =   .pause
+        models.accept([self.requests!])
 
         let destinsation :  DownloadRequest.Destination =  { _, _ in
             let docmentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = docmentsURL.appendingPathComponent(model.title)
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
-        
-       // let configuration =
-        
-        
-        //AF.session.default.configuration = URLSessionConfiguration.background(withIdentifier: "com.example.app.background")
-    //    let manager = AF(configuration: configuration)
-        
-     
-        
-        // 使用 URLSessionDownloadTask 下载任务在后台没有杀死的情况下可以支持 后台下载
-        //
+
+        /// 使用 URLSessionDownloadTask 下载任务在后台没有杀死的情况下可以支持 后台下载
         /// Type describing the source used to create the underlying `URLSessionDownloadTask`.
-      //  public enum Downloadable {
-            /// Download should be started from the `URLRequest` produced by the associated `URLRequestConvertible` value.
-        //    case request(URLRequestConvertible)
-            /// Download should be started from the associated resume `Data` value.
-       //     case resumeData(Data)
-       // }
-        
-      //  DownloadRequest.Downloadable
-//        AF.download(<#T##convertible: URLConvertible##URLConvertible#>, method: <#T##HTTPMethod#>, parameters: <#T##Encodable?#>, encoder: <#T##ParameterEncoder#>, headers: <#T##HTTPHeaders?#>, interceptor: <#T##RequestInterceptor?#>, requestModifier: <#T##Session.RequestModifier?##Session.RequestModifier?##(inout URLRequest) throws -> Void#>, to: <#T##DownloadRequest.Destination?##DownloadRequest.Destination?##(URL, HTTPURLResponse) -> (destinationURL: URL, options: DownloadRequest.Options)#>)
-//
-//        AF.download(<#T##convertible: URLRequestConvertible##URLRequestConvertible#>, interceptor: <#T##RequestInterceptor?#>, to: <#T##DownloadRequest.Destination?##DownloadRequest.Destination?##(URL, HTTPURLResponse) -> (destinationURL: URL, options: DownloadRequest.Options)#>)
-//
-//        DownloadRequest.Downloadable
-   //https://www.jianshu.com/p/7dac35fa1a62?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
-        
-       // NetWorkAPI.shared.manager
-        
-        //NetWorkAPI.shared.manager.backgroundCompletionHandler = completionHandler
-      //  Alamofire.ServerTrustManager
-        //Alamofire.DownloadResponse
-        
+        ///  public enum Downloadable {
+        /// Download should be started from the `URLRequest` produced by the associated `URLRequestConvertible` value.
+        ///    case request(URLRequestConvertible)
+        /// Download should be started from the associated resume `Data` value.
+        ///     case resumeData(Data)
+        ///
+        /// 目前Aalmofire5.0以上版本不支持 对后台下载任务，4.0版本支持
+        ///https://www.jianshu.com/p/7dac35fa1a62?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
+    
         self.requests?.list![index.row].request  =
             AF.download(URL(string: model.url)!,to: destinsation)
                 
@@ -130,8 +110,6 @@ class DownloadViewModel:NSObject,downloadViewModelType,downloadViewModelInputs,d
             .response { response in
                 //debugPrint(response)
         }
-        
-       // self.models.accept([self.requests!])
     }
     
     ///暂停
