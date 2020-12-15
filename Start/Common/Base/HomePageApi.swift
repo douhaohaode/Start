@@ -32,9 +32,9 @@ extension HomePageApi: TargetType {
     public var baseURL: URL {
         switch self {
         case .homePageData(_):
-            return URL(string: "https://gmxjjzad.dkvet.com")!
+            return URL(string: "https://uni.xingyi.art")!
         case.getShopList:
-            return URL(string: "https://gmxjjzad.dkvet.com")!
+            return URL(string: "https://uni.xingyi.art")!
         case .homePagelist(_,_,_):
             return URL(string: "")!
         case .playlistDate(_):

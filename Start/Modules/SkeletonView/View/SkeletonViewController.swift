@@ -109,3 +109,5 @@ extension SkeletonViewController : UICollectionViewDelegateFlowLayout{
             return UIEdgeInsets(top: CGFloat(2*minimumLineSpacing), left: CGFloat(2*minimumLineSpacing), bottom: CGFloat(2*minimumLineSpacing), right: CGFloat(2*minimumLineSpacing))
     }
 }
+
+

@@ -476,11 +476,11 @@
 			children = (
 				EC8F90BD258319A30031D83C /* YMTBaseViewController.swift */,
 				EC8F90BE258319A30031D83C /* YMTBaseTableView.swift */,
-				EC8F90BF258319A30031D83C /* HomePageApi.swift */,
 				EC8F90C0258319A30031D83C /* YMTBaseNavigationViewController.swift */,
 				EC8F90C1258319A30031D83C /* YMTBaseColletionCell.swift */,
 				EC8F90C2258319A30031D83C /* YMTBaseTabBarController.swift */,
 				EC8F90C3258319A30031D83C /* YMTGlobalLet.swift */,
+				EC8F90BF258319A30031D83C /* HomePageApi.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";

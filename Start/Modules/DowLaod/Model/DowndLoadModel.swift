@@ -16,7 +16,7 @@ import RxCocoa
 public enum DownLoadState : String {
     
     case none  =  "開始下"  //默认 开始
-    case pause =  "暂枝"     //暂停
+    case pause =  "暂停"     //暂停
     case continu = "继续"    //继续
     case complete = "大人"   //完成
     case error = "错误"      //错误

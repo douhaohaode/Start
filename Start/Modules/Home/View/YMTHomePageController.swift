@@ -93,6 +93,7 @@ extension YMTHomePageController {
         
         /// 监听键盘消失
         collectionView.rx.didScroll.subscribe(onNext :{[weak self] index in
+            self?.searchBar.text = ""
             self!.searchBar.resignFirstResponder()
         }).disposed(by: disposeBag)
         
