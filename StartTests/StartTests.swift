@@ -175,6 +175,7 @@ class StartTests: XCTestCase {
     func testAsyncRequest() throws {
         
         let exp = expectation(description: #function)
+        
         AF.request("https://uni.xingyi.art/getTopList")
             .responseData { response in
                 exp.fulfill()
